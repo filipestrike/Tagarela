@@ -1,91 +1,53 @@
-import { StatusBar } from "expo-status-bar";
+import "@fontsource/league-spartan";
+import AppLoading from 'expo-app-loading';
 import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from "react-native";
-import logo from "./assets/g aroto.png";
+  useFonts,
+  LexendExa_100Thin,
+  LexendExa_200ExtraLight,
+  LexendExa_300Light,
+  LexendExa_400Regular,
+  LexendExa_500Medium,
+  LexendExa_600SemiBold,
+  LexendExa_700Bold,
+  LexendExa_800ExtraBold,
+  LexendExa_900Black,
+} from '@expo-google-fonts/lexend-exa';
+import {
+  Mitr_200ExtraLight,
+  Mitr_300Light,
+  Mitr_400Regular,
+  Mitr_500Medium,
+  Mitr_600SemiBold,
+  Mitr_700Bold,
+} from '@expo-google-fonts/mitr';
+import FormLogin from "./src/screens/loginScreen";
+import ControlScreen from "./src/screens/pwrdControlScreen";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Image source={logo} style={styles.logo} />
-      <Text style={styles.formTitle}>Tagarela</Text>
-      <Text style={styles.formLogin}>Login</Text>
-      <TextInput
-        style={styles.formInput}
-        placeholder="Usuário"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoComplete="email"
-      ></TextInput>
-      <TextInput
-        style={styles.formInput}
-        placeholder="Senha"
-        autoCapitalize="none"
-        secureTextEntry
-      ></TextInput>
-      <Pressable style={styles.formButton}>
-        <Text style={styles.formTextButton}>Continuar</Text>
-      </Pressable>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  let [fontsLoaded] = useFonts({
+    LexendExa_100Thin,
+    LexendExa_200ExtraLight,
+    LexendExa_300Light,
+    LexendExa_400Regular,
+    LexendExa_500Medium,
+    LexendExa_600SemiBold,
+    LexendExa_700Bold,
+    LexendExa_800ExtraBold,
+    LexendExa_900Black,
+    Mitr_200ExtraLight,
+    Mitr_300Light,
+    Mitr_400Regular,
+    Mitr_500Medium,
+    Mitr_600SemiBold,
+    Mitr_700Bold,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#AAC8DA",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    margin: 10,
-  },
-  formTitle: {
-    color: "#004F84",
-    alignItems: "center",
-    font: "Mitr",
-    fontSize: 64,
-    marginBottom: 20,
-  },
-  formLogin: {
-    color: "#004F84",
-    alignItems: "center",
-    font: "Mitr",
-    fontSize: 48,
-    marginTop: 48,
-    marginBottom: 28,
-  },
-  formInput: {
-    borderRadius: 30,
-    borderWidth: 1,
-    borderRadius: 30,
-    fontSize: 25,
-    width: "80%",
-    backgroundColor: "#D9D9D9",
-    padding: 10,
-    margin: 10,
-  },
-  formButton: {
-    backgroundColor: "#004F84",
-    borderWidth: 1,
-    borderRadius: 20,
-    width: "35%",
-    padding: 10,
-    margin: 20,
-  },
-  formTextButton: {
-    color: "#FFF",
-    alignItems: "center",
-    fontSize: 24,
-    fontFamily: "lexend",
-    width: "100%",
-  },
-});
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      // <FormLogin />
+      <ControlScreen />
+    );
+  }
+}
