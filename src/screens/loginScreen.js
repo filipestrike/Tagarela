@@ -6,7 +6,7 @@ import {
   Image,
 } from "react-native";
 import logo from "../../assets/logoTagarela.png";
-import SubmitButton from "../components/loginButton";
+import SubmitButton from "../components/submitButton";
 
 const FormLogin = () => {
 
@@ -29,7 +29,11 @@ const FormLogin = () => {
         autoCapitalize="none"
         secureTextEntry
       ></TextInput>
-      <SubmitButton />
+      <SubmitButton 
+        onPress={() => {
+          alert('Button Pressed!');
+        }}
+      />
       <StatusBar style="auto" />
     </View>
   );

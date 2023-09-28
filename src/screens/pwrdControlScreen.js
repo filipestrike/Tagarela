@@ -2,18 +2,19 @@ import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   TextInput,
+  Text,
   View,
   Image,
 } from "react-native";
 import logo from "../../assets/logoTagarela_2.png";
-import SubmitButton from "../components/loginButton";
+import SubmitButton from "../components/submitButton";
 
 const ControlScreen = () => {
 
   return (
     <View style={styles.container}> 
       <Image source={logo} style={styles.logo} />
-      {/* <Text style={styles.textDesc}>CONTROLE DE RESPONSÁVEL</Text> */}
+      <Text style={styles.textDesc}>CONTROLE DE RESPONSÁVEL</Text>
       <TextInput
         style={styles.formInput}
         placeholder="Senha"
@@ -21,7 +22,21 @@ const ControlScreen = () => {
         autoCapitalize="none"
         secureTextEntry
       ></TextInput>
-      <SubmitButton />
+      <SubmitButton 
+        onPress={() => {
+          alert('Button Pressed!');
+        }}
+        buttonStyle={{ backgroundColor: "#D5D4FF" }}
+        textStyle={{ 
+          color: '#5E5CB2', 
+          textAlign: "center",
+          alignItems: "center",
+          paddingVertical: 10,
+          fontFamily: "LexendExa_400Regular",
+          fontSize: 24,
+          fontWeight: 400,
+          width: "100%",}}
+      />
       <StatusBar style="auto" />
     </View>
   );

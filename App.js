@@ -22,6 +22,7 @@ import {
 } from '@expo-google-fonts/mitr';
 import FormLogin from "./src/screens/loginScreen";
 import ControlScreen from "./src/screens/pwrdControlScreen";
+import Home from "./src/screens/homeScreen";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -46,8 +47,7 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      // <FormLogin />
-      <ControlScreen />
+      <Home />
     );
   }
 }

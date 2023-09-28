@@ -1,17 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const SubmitButton = () => {
-  const handlePress = () => {
-    // Your button press logic here
-    alert('Button Pressed!');
-  };
-
+const SubmitButton = ({onPress, buttonStyle, textStyle}) => {
   return (
-    <TouchableOpacity onPress={handlePress}>
-      <View style={styles.button}>
-        <Text style={styles.buttonText}>Continuar</Text>
-      </View>
+    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
+      <Text style={[styles.text, textStyle]}>Continuar</Text>
     </TouchableOpacity>
   );
 };
