@@ -9,7 +9,6 @@ import logo from "../../assets/logoTagarela.png";
 import SubmitButton from "../components/submitButton";
 
 const FormLogin = () => {
-
   return (
     <View style={styles.container}> 
       <Image source={logo} style={styles.logo} />
@@ -31,6 +30,7 @@ const FormLogin = () => {
       ></TextInput>
       <SubmitButton 
         onPress={() => {
+          // Aqui vai os processos que os botão vai executar depois de ser pressionado
           alert('Button Pressed!');
         }}
       />

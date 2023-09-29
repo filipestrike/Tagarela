@@ -24,8 +24,10 @@ const ControlScreen = () => {
       ></TextInput>
       <SubmitButton 
         onPress={() => {
+          // Aqui vai os processos que os botão vai executar depois de ser pressionado
           alert('Button Pressed!');
         }}
+        // Modificamos a aparência do botão reutilizando passando valores diferentes para os estilos
         buttonStyle={{ backgroundColor: "#D5D4FF" }}
         textStyle={{ 
           color: '#5E5CB2', 
