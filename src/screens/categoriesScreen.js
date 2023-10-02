@@ -11,7 +11,7 @@ import CardModel from "../components/card";
 
 const Categories = () => {
     return (
-        <View>
+        <View style={styles.containerFather}>
             <HeaderComponent />
             <View style={styles.containerBars}>
                 <CardsCategoriesEdit />
@@ -25,6 +25,10 @@ const Categories = () => {
 };
 
 const styles = StyleSheet.create({
+    containerFather: {
+        backgroundColor: "#FFFFFF",
+        flex: 1,
+    },
     containerBars: {
         width: "100%",
         justifyContent: "center",

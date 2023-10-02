@@ -11,7 +11,7 @@ import HeaderComponent from "../components/header";
 
 const Home = () => {
     return(
-        <View>
+        <View style={styles.containerFather}>
             <HeaderComponent />
             <View style={styles.containerBars}>
                 <CardsCategories />
@@ -26,6 +26,10 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
+    containerFather: {
+        backgroundColor: "#FFFFFF",
+        flex: 1,
+    },
     containerBars: {
         width: "100%",
         justifyContent: "center",

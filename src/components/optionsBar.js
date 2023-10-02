@@ -5,15 +5,17 @@ import {
     View,
 } from "react-native";
 import Svg, { Path } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 const optionButtonMargin = width * 0.02; // Margin based on screen size
 
 const OptionsMenu = ({ homeColor, favColor, addColor, categoriesColor, userColor }) => {
+  const navigation = useNavigation();
     return(
         <View style={styles.containerFather}>
             <View style={styles.container}>
-                <TouchableOpacity style={[styles.optionButton, { marginHorizontal: optionButtonMargin }]}>
+                <TouchableOpacity style={[styles.optionButton, { marginHorizontal: optionButtonMargin }]} onPress={() => {navigation.navigate('Home')}}>
                     <Svg width={70} height={60} viewBox="0 0 70 60" fill={homeColor} xmlns="http://www.w3.org/2000/Svg">
                         <Path d="M31.0327 0L0 23.2745H7.75817V54.3072H23.2745V38.7908H38.7908V54.3072H54.3072V23.0418L62.0653 23.2745L31.0327 0Z"/>
                     </Svg>
@@ -28,7 +30,7 @@ const OptionsMenu = ({ homeColor, favColor, addColor, categoriesColor, userColor
                         <Path d="M18.3418 0V20.2168H0V33.6946H18.3418V53.9114H30.5696V33.6946H48.9114V20.2168H30.5696V0H18.3418Z" />
                     </Svg>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.optionButtonCategories, { marginHorizontal: optionButtonMargin }]}>
+                <TouchableOpacity style={[styles.optionButtonCategories, { marginHorizontal: optionButtonMargin }]} onPress={() => {navigation.navigate('Categories')}}>
                     <Svg width={70} height={60} viewBox="0 0 70 60" fill={categoriesColor} xmlns="http://www.w3.org/2000/svg">
                         <Path d="M0 0V12.334H60.4441V6.16699H22.6665V0H0ZM0 18.501V46.2524C0 47.9792 1.66221 49.3359 3.77775 49.3359H56.6663C58.7818 49.3359 60.4441 47.9792 60.4441 46.2524V18.501H0Z" />
                     </Svg>
