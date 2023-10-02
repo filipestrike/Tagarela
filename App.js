@@ -20,9 +20,14 @@ import {
   Mitr_600SemiBold,
   Mitr_700Bold,
 } from '@expo-google-fonts/mitr';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import FormLogin from "./src/screens/loginScreen";
 import ControlScreen from "./src/screens/pwrdControlScreen";
 import Home from "./src/screens/homeScreen";
+import Categories from "./src/screens/categoriesScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -47,7 +52,13 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <Home />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={FormLogin} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Categories" component={Categories} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }

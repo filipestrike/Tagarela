@@ -9,13 +9,13 @@ import {
 const { width, height } = Dimensions.get('window');
 const optionButtonMargin = width * 0.027; // Margin based on screen size
 
-const CardsCategories = () => {
+const CardsCategoriesEdit = () => {
     return(
         <View style={styles.containerFather}>
             <View style={styles.container}>
                 <TouchableOpacity style={[styles.optionButton, { marginHorizontal: optionButtonMargin }]}>
                     <Text style={styles.optionText}>
-                        DIA A DIA
+                        FAVORITOS
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.optionButton, { marginHorizontal: optionButtonMargin }]}>
@@ -45,9 +45,9 @@ const CardsCategories = () => {
 
 const styles = StyleSheet.create({
     containerFather: {
+        backgroundColor: "#FFFFFF",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#FFFFFF",
     },
     container: {
         width: width * 0.8, // Width based on screen size
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardsCategories;
+export default CardsCategoriesEdit;

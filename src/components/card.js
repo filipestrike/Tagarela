@@ -4,13 +4,17 @@ import {
     Dimensions,
     View,
     Text,
-    Image,
 } from "react-native";
+
+const { width, height } = Dimensions.get('window');
+const cardWidth = width * 0.2; // Card width based on screen size
+const cardHeight = height * 0.35; // Card height based on screen size
+const cardMargin = width * 0.005; // Card margin based on screen size
 
 const CardModel = () => {
     return(
         <View style={styles.container}>
-            <TouchableOpacity style={styles.cardButton} onPress={() => {
+            <TouchableOpacity style={[styles.cardButton, { width: cardWidth, height: cardHeight, marginVertical: cardMargin }]} onPress={() => {
                 // Aqui vai a logica para executar o sonido da card
                 alert('Card Pressed!');
             }}>
@@ -28,19 +32,19 @@ const styles = StyleSheet.create({
     container: {
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#FFFFFF",
     },
-    cardButton :{
+    cardButton: {
         backgroundColor: "#F4F4F4",
         borderRadius: 30,
-        height: 234,
-        width: 267,
         marginTop: 20,
-        marginHorizontal: 30,
+        marginHorizontal: cardMargin,
+        // Width and height set dynamically
     },
-    cardText:{
+    cardText: {
         marginTop: 5,
         fontFamily: "Mitr_500Medium",
-        fontSize: 30,
+        fontSize: width * 0.02, // Font size based on screen size
         color: "#000000",
     },
 });

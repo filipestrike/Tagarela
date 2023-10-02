@@ -1,4 +1,5 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar, Dimensions } from "react-native";
+import React from "react";
 import {
   StyleSheet,
   TextInput,
@@ -7,8 +8,14 @@ import {
 } from "react-native";
 import logo from "../../assets/logoTagarela.png";
 import SubmitButton from "../components/submitButton";
+import { useNavigation } from '@react-navigation/native';
+
+const { width, height } = Dimensions.get('window');
+const fontSize = Math.min(width, height) * 0.04; // Font size based on screen size
 
 const FormLogin = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}> 
       <Image source={logo} style={styles.logo} />
@@ -16,22 +23,23 @@ const FormLogin = () => {
         style={styles.formInput}
         placeholder="Usuário"
         keyboardType="email-address"
-        placeholderTextColor={"#A7A7A7"}
+        placeholderTextColor="#A7A7A7"
         autoCapitalize="none"
         autoComplete="email"
         color="D3D3D3"
-      ></TextInput>
+      />
       <TextInput
         style={styles.formInput}
         placeholder="Senha"
-        placeholderTextColor={"#A7A7A7"}
+        placeholderTextColor="#A7A7A7"
         autoCapitalize="none"
         secureTextEntry
-      ></TextInput>
+      />
       <SubmitButton 
         onPress={() => {
           // Aqui vai os processos que os botão vai executar depois de ser pressionado
           alert('Button Pressed!');
+          navigation.navigate('Home');
         }}
       />
       <StatusBar style="auto" />
@@ -47,17 +55,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    width: 400,
-    height: 300,
+    width: '20%', // Adjust as needed
+    aspectRatio: 450 / 300,
     margin: 10,
   },
   formInput: {
     borderWidth: 1,
     borderRadius: 20,
     fontFamily: "League Spartan",
-    fontSize: 20,
+    fontSize: fontSize, // Responsive font size
     height: 66,
-    width: 564,
+    width: '80%', // Adjust as needed
     borderColor: "#F4F4F4",
     backgroundColor: "#F4F4F4",
     padding: 10,

@@ -4,23 +4,22 @@ import {
     View,
 } from "react-native";
 
-import CardsCategories from "../components/cardsBar";
+import HeaderComponent from "../components/header";
+import CardsCategoriesEdit from "../components/cardsBarEdit";
 import OptionsMenu from "../components/optionsBar";
 import CardModel from "../components/card";
-import HeaderComponent from "../components/header";
 
-const Home = () => {
-    return(
+const Categories = () => {
+    return (
         <View>
             <HeaderComponent />
             <View style={styles.containerBars}>
-                <CardsCategories />
+                <CardsCategoriesEdit />
             </View>
             <CardModel />
             <View style={styles.containerBars}>
-                <OptionsMenu homeColor="#5E5CB2" favColor="#949494" addColor="#949494" categoriesColor="#949494" userColor="#949494" />
+                <OptionsMenu homeColor="#949494" favColor="#949494" addColor="#949494" categoriesColor="#5E5CB2" userColor="#949494" />
             </View>
-            <StatusBar />
         </View>
     );
 };
@@ -33,4 +32,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Home;
+export default Categories;
