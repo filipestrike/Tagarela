@@ -1,6 +1,7 @@
-import { StatusBar, Dimensions } from "react-native";
 import React from "react";
 import {
+  StatusBar,
+  Dimensions,
   StyleSheet,
   TextInput,
   View,
@@ -11,7 +12,7 @@ import SubmitButton from "../components/submitButton";
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
-const fontSize = Math.min(width, height) * 0.04; // Font size based on screen size
+const fontSize = Math.min(width, height) * 0.02; // Font size based on screen size
 
 const FormLogin = () => {
   const navigation = useNavigation();
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderRadius: 20,
-    fontFamily: "League Spartan",
+    fontFamily: "Spartan_400Regular",
     fontSize: fontSize, // Responsive font size
     height: 66,
     width: '80%', // Adjust as needed
