@@ -7,18 +7,18 @@ import {
   View,
   Image,
 } from "react-native";
-import logo from "../../assets/logoTagarela.png";
+import logo from "../common/assets/icons/logoTagarela.png";
 import SubmitButton from "../components/submitButton";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.02; // Font size based on screen size
 
 const FormLogin = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
       <TextInput
         style={styles.formInput}
@@ -36,17 +36,17 @@ const FormLogin = () => {
         autoCapitalize="none"
         secureTextEntry
       />
-      <SubmitButton 
+      <SubmitButton
         onPress={() => {
           // Aqui vai os processos que os botão vai executar depois de ser pressionado
-          alert('Button Pressed!');
-          navigation.navigate('Home');
+          alert("Button Pressed!");
+          navigation.navigate("Home");
         }}
       />
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    width: '20%', // Adjust as needed
+    width: "20%", // Adjust as needed
     aspectRatio: 450 / 300,
     margin: 10,
   },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     fontFamily: "Spartan_400Regular",
     fontSize: fontSize, // Responsive font size
     height: 66,
-    width: '80%', // Adjust as needed
+    width: "80%", // Adjust as needed
     borderColor: "#F4F4F4",
     backgroundColor: "#F4F4F4",
     padding: 10,

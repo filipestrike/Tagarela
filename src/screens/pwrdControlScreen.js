@@ -7,10 +7,10 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import logo from "../../assets/logoTagarela_2.png";
+import logo from "../common/assets/icons/logoTagarela_2.png";
 import SubmitButton from "../components/submitButton";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 const logoWidth = width * 0.2; // Logo width based on screen size
 const logoHeight = height * 0.21; // Logo height based on screen size
 const formWidth = width * 0.4; // Form width based on screen size
@@ -21,10 +21,16 @@ const buttonTextSize = width * 0.01; // Button text size based on screen size
 const ControlScreen = () => {
   return (
     <View style={styles.container}>
-      <Image source={logo} style={[styles.logo, { width: logoWidth, height: logoHeight }]} />
+      <Image
+        source={logo}
+        style={[styles.logo, { width: logoWidth, height: logoHeight }]}
+      />
       <Text style={styles.textDesc}>CONTROLE DE RESPONSÁVEL</Text>
       <TextInput
-        style={[styles.formInput, { width: formWidth, height: formHeight, marginVertical: formMargin }]}
+        style={[
+          styles.formInput,
+          { width: formWidth, height: formHeight, marginVertical: formMargin },
+        ]}
         placeholder="Senha"
         placeholderTextColor={"#A7A7A7"}
         autoCapitalize="none"
@@ -33,12 +39,12 @@ const ControlScreen = () => {
       <SubmitButton
         onPress={() => {
           // Aqui vai os processos que os botão vai executar depois de ser pressionado
-          alert('Button Pressed!');
+          alert("Button Pressed!");
         }}
         // Modificamos a aparência do botão reutilizando passando valores diferentes para os estilos
         buttonStyle={{ backgroundColor: "#D5D4FF" }}
         textStyle={{
-          color: '#5E5CB2',
+          color: "#5E5CB2",
           textAlign: "center",
           alignItems: "center",
           paddingVertical: 10,
@@ -50,7 +56,7 @@ const ControlScreen = () => {
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
