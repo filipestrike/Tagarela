@@ -9,7 +9,7 @@ const StepTwoCreate = () => {
     return (
         <View style={styles.container}>
             <TextInput style={styles.cardNameInput}
-                placeholder="     NOME DA CARD"
+                placeholder="NOME DO CARD"
                 placeholderTextColor="#5E5CB2"
             />
             <TouchableOpacity style={styles.uploadButton}>
