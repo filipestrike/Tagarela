@@ -1,4 +1,4 @@
-import AppLoading from 'expo-app-loading';
+import AppLoading from "expo-app-loading";
 import {
   useFonts,
   LexendExa_100Thin,
@@ -10,7 +10,7 @@ import {
   LexendExa_700Bold,
   LexendExa_800ExtraBold,
   LexendExa_900Black,
-} from '@expo-google-fonts/lexend-exa';
+} from "@expo-google-fonts/lexend-exa";
 import {
   Mitr_200ExtraLight,
   Mitr_300Light,
@@ -18,25 +18,14 @@ import {
   Mitr_500Medium,
   Mitr_600SemiBold,
   Mitr_700Bold,
-} from '@expo-google-fonts/mitr';
-import {
-  Spartan_100Thin,
-  Spartan_200ExtraLight,
-  Spartan_300Light,
-  Spartan_400Regular,
-  Spartan_500Medium,
-  Spartan_600SemiBold,
-  Spartan_700Bold,
-  Spartan_800ExtraBold,
-  Spartan_900Black,
-} from '@expo-google-fonts/spartan';
+} from "@expo-google-fonts/mitr";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import FormLogin from "./src/screens/loginScreen";
 import ControlScreen from "./src/screens/pwrdControlScreen";
 import Home from "./src/screens/homeScreen";
 import Categories from "./src/screens/categoriesScreen";
-import CreateCard from './src/screens/createCardScreen';
+import CreateCard from "./src/screens/createCardScreen";
 
 const Stack = createStackNavigator();
 
@@ -57,15 +46,6 @@ export default function App() {
     Mitr_500Medium,
     Mitr_600SemiBold,
     Mitr_700Bold,
-    Spartan_100Thin,
-    Spartan_200ExtraLight,
-    Spartan_300Light,
-    Spartan_400Regular,
-    Spartan_500Medium,
-    Spartan_600SemiBold,
-    Spartan_700Bold,
-    Spartan_800ExtraBold,
-    Spartan_900Black,
   });
 
   if (!fontsLoaded) {
@@ -73,7 +53,10 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{ headerShown: false }}
+        >
           <Stack.Screen name="Login" component={FormLogin} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
