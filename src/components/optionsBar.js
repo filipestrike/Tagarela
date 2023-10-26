@@ -25,7 +25,7 @@ const OptionsMenu = ({ homeColor, favColor, addColor, categoriesColor, userColor
                         <Path d="M34.7451 0L26.0588 22.3088H0L21.7157 37.1814L13.0294 59.4902L34.7451 44.6176L56.4608 59.4902L47.7745 37.1814L69.4902 22.3088H43.4314L34.7451 0Z" />
                     </Svg>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.optionButtonAdd, { marginHorizontal: optionButtonMargin }]}>
+                <TouchableOpacity style={[styles.optionButtonAdd, { marginHorizontal: optionButtonMargin }]} onPress={() => {navigation.navigate('CreateCard')}}>
                     <Svg width={70} height={60} viewBox="0 0 70 60" fill={addColor} xmlns="http://www.w3.org/2000/svg">
                         <Path d="M18.3418 0V20.2168H0V33.6946H18.3418V53.9114H30.5696V33.6946H48.9114V20.2168H30.5696V0H18.3418Z" />
                     </Svg>

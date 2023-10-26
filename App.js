@@ -1,4 +1,3 @@
-import "@fontsource/league-spartan";
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
@@ -20,12 +19,24 @@ import {
   Mitr_600SemiBold,
   Mitr_700Bold,
 } from '@expo-google-fonts/mitr';
+import {
+  Spartan_100Thin,
+  Spartan_200ExtraLight,
+  Spartan_300Light,
+  Spartan_400Regular,
+  Spartan_500Medium,
+  Spartan_600SemiBold,
+  Spartan_700Bold,
+  Spartan_800ExtraBold,
+  Spartan_900Black,
+} from '@expo-google-fonts/spartan';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import FormLogin from "./src/screens/loginScreen";
 import ControlScreen from "./src/screens/pwrdControlScreen";
 import Home from "./src/screens/homeScreen";
 import Categories from "./src/screens/categoriesScreen";
+import CreateCard from './src/screens/createCardScreen';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +57,15 @@ export default function App() {
     Mitr_500Medium,
     Mitr_600SemiBold,
     Mitr_700Bold,
+    Spartan_100Thin,
+    Spartan_200ExtraLight,
+    Spartan_300Light,
+    Spartan_400Regular,
+    Spartan_500Medium,
+    Spartan_600SemiBold,
+    Spartan_700Bold,
+    Spartan_800ExtraBold,
+    Spartan_900Black,
   });
 
   if (!fontsLoaded) {
@@ -57,6 +77,7 @@ export default function App() {
           <Stack.Screen name="Login" component={FormLogin} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
+          <Stack.Screen name="CreateCard" component={CreateCard} />
         </Stack.Navigator>
       </NavigationContainer>
     );
