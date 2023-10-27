@@ -9,7 +9,7 @@ const StepOneCreate = () => {
     return (
         <View style={styles.container}>
             <TextInput style={styles.cardNameInput}
-                placeholder="     NOME DA CARD"
+                placeholder="NOME DA CARD"
                 placeholderTextColor="#5E5CB2"
             />
             <TouchableOpacity style={styles.uploadButton}>
@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#F4F4F4",
     },
     textUpload: {
-        fontFamily: "Spartan_500Medium",
+        fontFamily: "Mitr_400Regular",
         color: "#5E5CB2",
         fontSize: 20,
         marginVertical: 10,
     },
     textAudioOptions: {
         marginHorizontal: 10,
-        fontFamily: "Spartan_500Medium",
+        fontFamily: "Mitr_400Regular",
         color: "#5E5CB2",
         fontSize: 20,
     },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         marginHorizontal: 10,
-        marginVertical: 10,
+        marginVertical: 5,
         backgroundColor: "#F4F4F4",
         height: 50,
         width: 245,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         marginHorizontal: 10,
-        marginVertical: 10,
+        marginVertical: 5,
         backgroundColor: "#F4F4F4",
         height: 50,
         width: 245,
@@ -92,14 +92,15 @@ const styles = StyleSheet.create({
     },
     textAudioBttn: {
         marginHorizontal: 5,
-        fontFamily: "Spartan_500Medium",
+        fontFamily: "Mitr_400Regular",
         fontSize: 20,
         color: "#5E5CB2",
     },
     cardNameInput: {
         borderWidth: 1,
         borderRadius: 30,
-        fontFamily: "Spartan_500Medium",
+        fontFamily: "Mitr_400Regular",
+        padding: 20,
         fontSize: fontSize, // Responsive font size
         height: 66,
         width: "40%", // Adjust as needed

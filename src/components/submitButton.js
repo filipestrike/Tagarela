@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-const buttonWidth = Math.min(width, height) * 0.8; // Button width based on screen size
+const buttonWidth = Math.min(width, height) * 0.45; // Button width based on screen size
 const fontSize = Math.min(width, height) * 0.04; // Font size based on screen size
 
 const SubmitButton = ({ onPress, buttonStyle, textStyle }) => {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#FFFFFF",
     alignItems: "center",
-    paddingVertical: 10,
+    paddingVertical: 8,
     fontFamily: "LexendExa_400Regular",
     fontWeight: '400',
     width: "100%",

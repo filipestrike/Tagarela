@@ -12,7 +12,7 @@ import SubmitButton from "../components/submitButton";
 import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
-const fontSize = Math.min(width, height) * 0.02; // Font size based on screen size
+const fontSize = Math.min(width, height) * 0.03; // Font size based on screen size
 
 const FormLogin = () => {
   const navigation = useNavigation();
@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderRadius: 20,
-    fontFamily: "Spartan_400Regular",
+    fontFamily: "Mitr_400Regular",
     fontSize: fontSize, // Responsive font size
-    height: 66,
-    width: "80%", // Adjust as needed
+    height: 60,
+    width: "50%", // Adjust as needed
     borderColor: "#F4F4F4",
     backgroundColor: "#F4F4F4",
-    padding: 10,
+    padding: 15,
     margin: 10,
   },
 });
