@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 const fontSize = Math.min(width, height) * 0.03; // Font size based on screen size
 
-const StepOneCreate = () => {
+const StepTwoCreate = () => {
     return (
         <View style={styles.container}>
             <TextInput style={styles.cardNameInput}
@@ -13,9 +13,9 @@ const StepOneCreate = () => {
                 placeholderTextColor="#5E5CB2"
             />
             <TouchableOpacity style={styles.uploadButton}>
-                <Text style={styles.textUpload}>UPLOAD IMAGEM</Text>
-                <Svg width="36" height="33" viewBox="0 0 36 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <Path d="M0 0V4.03183H35.7206V0H0ZM17.8603 8.06367L4.46508 20.1592H13.3952V32.2547H22.3254V20.1592H31.2555L17.8603 8.06367Z" fill="#5E5CB2"/>
+                <Text style={styles.textUpload}>IMAGEM CARREGADA</Text>
+                <Svg width="58" height="47" viewBox="0 0 58 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <Path d="M46.7675 0L41.7332 5.25314L21.4503 25.5361L15.5405 19.8452L10.2874 14.592L0 24.8794L5.25314 30.1326L16.1972 41.0766L21.2314 46.3297L26.4846 41.0766L52.0206 15.5405L57.2738 10.2874L46.7675 0Z" fill="#5E5CB2"/>
                 </Svg>
             </TouchableOpacity>
             <View style={styles.containerAudioBttn}>
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default StepOneCreate;
+export default StepTwoCreate;
