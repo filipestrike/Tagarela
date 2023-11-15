@@ -10,7 +10,7 @@ import { app } from '../components/fireBaseConfig';
 
 
 const { width, height } = Dimensions.get("window");
-const fontSize = Math.min(width, height) * 0.03; 
+const fontSize = Math.min(width, height) * 0.03;
 
 const FormLogin = () => {
   const navigation = useNavigation();
@@ -23,7 +23,7 @@ const FormLogin = () => {
 
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {        
+      .then((userCredential) => {
         console.log('Conta criada!');
         const user = userCredential.user;
         console.log(user);
@@ -31,7 +31,7 @@ const FormLogin = () => {
       })
       .catch(error => {
         console.log(error);
-        setErrorMessage('Erro ao criar conta: ' + error.message); 
+        setErrorMessage('Erro ao criar conta: ' + error.message);
       });
   }
 
@@ -40,8 +40,8 @@ const FormLogin = () => {
       .then((userCredential) => {
         console.log('Login bem-sucedido');
         const user = userCredential.user;
-        console.log(user);   
-        navigation.navigate('Home');            
+        console.log(user);
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.error('Erro durante o login:', error);
@@ -77,7 +77,7 @@ const FormLogin = () => {
         onPress={handleCreateAccount}
       />
       <SubmitButton
-        onPress={handleSignIn}        
+        onPress={handleSignIn}
       />
       <StatusBar style="auto" />
       {errorMessage !== '' && <Text style={styles.errorText}>{errorMessage}</Text>} {/* Exibir mensagem de erro condicionalmente */}
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 20,
     fontFamily: "Mitr_400Regular",
-    fontSize: fontSize, 
+    fontSize: fontSize,
     borderColor: "#6C6CBF",
     backgroundColor: "#ffffff90",
     padding: 15,
