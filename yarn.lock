@@ -4666,10 +4666,33 @@ expo-asset@~8.10.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-constants@~14.4.2:
-  version "14.4.2"
-  resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-14.4.2.tgz"
-  integrity sha512-nOB122DOAjk+KrJT69lFQAoYVQGQjFHSigCPVBzVdko9S1xGsfiOH9+X5dygTsZTIlVLpQJDdmZ7ONiv3i+26w==
+"expo-application@~5.3.0":
+  "integrity" "sha512-HR2+K+Hm33vLw/TfbFaHrvUbRRNRco8R+3QaCKy7eJC2LFfT05kZ15ynGaKfB5DJ/oqPV3mxXVR/EfwmE++hoA=="
+  "resolved" "https://registry.npmjs.org/expo-application/-/expo-application-5.3.1.tgz"
+  "version" "5.3.1"
+
+"expo-asset@~8.10.1":
+  "integrity" "sha512-5VMTESxgY9GBsspO/esY25SKEa7RyascVkLe/OcL1WgblNFm7xCCEEUIW8VWS1nHJQGYxpMZPr3bEfjMpdWdyA=="
+  "resolved" "https://registry.npmjs.org/expo-asset/-/expo-asset-8.10.1.tgz"
+  "version" "8.10.1"
+  dependencies:
+    "blueimp-md5" "^2.10.0"
+    "expo-constants" "~14.4.2"
+    "expo-file-system" "~15.4.0"
+    "invariant" "^2.2.4"
+    "md5-file" "^3.2.3"
+    "path-browserify" "^1.0.0"
+    "url-parse" "^1.5.9"
+
+"expo-av@~13.4.1":
+  "integrity" "sha512-0K8QEFzZeNGrppzYUs8wOtjOyPPkxzlVYbEHM6WzIQOG1uYYNOJkJB3aQHVFXHmz+AzoHwMrUjcschofwaMNeg=="
+  "resolved" "https://registry.npmjs.org/expo-av/-/expo-av-13.4.1.tgz"
+  "version" "13.4.1"
+
+"expo-constants@~14.4.2":
+  "integrity" "sha512-nOB122DOAjk+KrJT69lFQAoYVQGQjFHSigCPVBzVdko9S1xGsfiOH9+X5dygTsZTIlVLpQJDdmZ7ONiv3i+26w=="
+  "resolved" "https://registry.npmjs.org/expo-constants/-/expo-constants-14.4.2.tgz"
+  "version" "14.4.2"
   dependencies:
     "@expo/config" "~8.1.0"
     uuid "^3.3.2"
