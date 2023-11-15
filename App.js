@@ -27,6 +27,7 @@ import Home from "./src/screens/homeScreen";
 import Categories from "./src/screens/categoriesScreen";
 import CreateCard from "./src/screens/createCardScreen";
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
