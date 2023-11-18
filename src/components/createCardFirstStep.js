@@ -13,7 +13,7 @@ import * as ImagePicker from "expo-image-picker";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import storage from "./fireBaseConfig";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import iconCheck from "/src/common/assets/icons/icon_check.svg";
+import iconCheck from "../common/assets/icons/icon_check.svg";
 
 const firestore = getFirestore();
 

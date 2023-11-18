@@ -1,35 +1,7 @@
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  View,
-  Text,
-  Image,
-  ScrollView,
-} from "react-native";
-import Abrir from "../common/images/Abrir.png";
-import Correr from "../common/images/Correr.png";
-import Fechar from "../common/images/Fechar.png";
-import Piscar from "../common/images/Piscar.png";
-import Aqui from "../common/images/Aqui.png";
-import Lá from "../common/images/Lá.png";
-import Sim from "../common/images/Sim.png";
-import Não from "../common/images/Não.png";
-import Rindo from "../common/images/Rindo.png";
-import Assustado from "../common/images/Assustado.png";
-import Chorando from "../common/images/Chorando.png";
-import Feliz from "../common/images/Feliz.png";
-import Lavar from "../common/images/Lavar.png";
-import Xixi from "../common/images/Xixi.png";
-import Comer from "../common/images/Comer.png";
-import Coco from "../common/images/Feliz.png";
+import { TouchableOpacity, View, Text, ScrollView } from "react-native";
+import { styles, cardWidth, cardHeight, cardMargin } from "./card";
 
-const { width, height } = Dimensions.get("window");
-const cardWidth = width * 0.2; // Card width based on screen size
-const cardHeight = height * 0.35; // Card height based on screen size
-const cardMargin = width * 0.005; // Card margin based on screen size
-
-const CardModel = ({ selectedCategory }) => {
+export const CardModel = ({ selectedCategory }) => {
   const renderCard = () => {
     switch (selectedCategory) {
       case "DIA A DIA":
@@ -47,14 +19,18 @@ const CardModel = ({ selectedCategory }) => {
                     },
                   ]}
                   onPress={() => {
+                    // Aqui vai a logica para executar o sonido da card
                     alert("Card Pressed1!");
                   }}
                 >
-                  <Image source={Sim} style={[styles.cardImage]} />
+                  <Image
+                    source={card.image}
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  SIM
+                  CARD TEXT 1
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -68,14 +44,15 @@ const CardModel = ({ selectedCategory }) => {
                     },
                   ]}
                   onPress={() => {
+                    // Aqui vai a logica para executar o sonido da card
                     alert("Card Pressed2!");
                   }}
                 >
-                  <Image source={Não} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  NÃO
+                  CARD TEXT 2
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -93,11 +70,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed3!");
                   }}
                 >
-                  <Image source={Lá} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  Lá
+                  CARD TEXT 3
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -115,11 +92,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed4!");
                   }}
                 >
-                  <Image source={Aqui} style={[styles.cardImageAqui]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  Aqui
+                  CARD TEXT 4
                 </Text>
               </View>
             </ScrollView>
@@ -144,11 +121,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed1!");
                   }}
                 >
-                  <Image source={Fechar} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  FECHAR
+                  CARD TEXT 1
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -166,11 +143,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed2!");
                   }}
                 >
-                  <Image source={Correr} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CORRER
+                  CARD TEXT 2
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -188,11 +165,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed3!");
                   }}
                 >
-                  <Image source={Abrir} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  ABRIR
+                  CARD TEXT 3
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -210,11 +187,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed4!");
                   }}
                 >
-                  <Image source={Piscar} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  PISCAR
+                  CARD TEXT 4
                 </Text>
               </View>
             </ScrollView>
@@ -239,11 +216,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed1!");
                   }}
                 >
-                  <Image source={Rindo} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  RINDO
+                  CARD TEXT 1
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -261,11 +238,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed2!");
                   }}
                 >
-                  <Image source={Assustado} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  ASSUSTADO
+                  CARD TEXT 2
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -283,11 +260,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed3!");
                   }}
                 >
-                  <Image source={Chorando} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CHORANDO
+                  CARD TEXT 3
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -305,11 +282,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed4!");
                   }}
                 >
-                  <Image source={Feliz} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  FELIZ
+                  CARD TEXT 4
                 </Text>
               </View>
             </ScrollView>
@@ -334,11 +311,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed1!");
                   }}
                 >
-                  <Image source={Lavar} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  LAVAR AS MÂOS
+                  CARD TEXT 1
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -356,11 +333,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed2!");
                   }}
                 >
-                  <Image source={Xixi} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  XIXI
+                  CARD TEXT 2
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -378,11 +355,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed3!");
                   }}
                 >
-                  <Image source={Comer} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  COMER
+                  CARD TEXT 3
                 </Text>
               </View>
               <View style={styles.cardContainer}>
@@ -400,11 +377,11 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed4!");
                   }}
                 >
-                  <Image source={Coco} style={[styles.cardImageFull]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  COCÔ
+                  CARD TEXT 4
                 </Text>
               </View>
             </ScrollView>
@@ -429,7 +406,7 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed1!");
                   }}
                 >
-                  <Image source={Abrir} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
@@ -451,7 +428,7 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed2!");
                   }}
                 >
-                  <Image source={Abrir} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
@@ -473,7 +450,7 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed3!");
                   }}
                 >
-                  <Image source={Abrir} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
@@ -495,7 +472,7 @@ const CardModel = ({ selectedCategory }) => {
                     alert("Card Pressed4!");
                   }}
                 >
-                  <Image source={Abrir} style={[styles.cardImage]} />
+                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
                 </TouchableOpacity>
                 <Text style={styles.cardText}>
                   {/* aqui vai a logica para trazer o text descrição da imagen */}
@@ -522,7 +499,7 @@ const CardModel = ({ selectedCategory }) => {
                 alert("Card Pressed1!");
               }}
             >
-              <Image source={Abrir} style={[styles.cardImage]} />
+              {/* Aqui vai a logica para trazer a imagen do banco de dados */}
             </TouchableOpacity>
             <Text style={styles.cardText}>
               {/* aqui vai a logica para trazer o text descrição da imagen */}
@@ -534,54 +511,3 @@ const CardModel = ({ selectedCategory }) => {
   };
   return <View>{renderCard()}</View>;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFFFFF",
-  },
-  scrollViewContent: {
-    alignItems: "center",
-  },
-  cardContainer: {
-    marginLeft: 40,
-    margin: 12,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardButton: {
-    backgroundColor: "#F4F4F4",
-    borderRadius: 30,
-    marginTop: 20,
-  },
-  cardText: {
-    marginTop: 5,
-    fontFamily: "Mitr_500Medium",
-    fontSize: width * 0.02,
-    color: "#000000",
-  },
-  cardImage: {
-    width: "90%",
-    height: "100%",
-    borderRadius: 15,
-    marginTop: 15,
-    marginLeft: 12.5,
-  },
-  cardImageAqui: {
-    width: "90%",
-    height: "100%",
-    borderRadius: 15,
-    marginLeft: 35,
-  },
-  cardImageFull: {
-    width: "90%",
-    height: "100%",
-    borderRadius: 10,
-    marginLeft: 15,
-  },
-});
-
-export default CardModel;
