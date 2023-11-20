@@ -21,38 +21,6 @@ const CardsCategoriesEdit = () => {
         >
           <Text style={styles.optionText}>FAVORITOS</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            { marginHorizontal: optionButtonMargin },
-          ]}
-        >
-          <Text style={styles.optionText}>AÇÕES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            { marginHorizontal: optionButtonMargin },
-          ]}
-        >
-          <Text style={styles.optionText}>EMOÇÕES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            { marginHorizontal: optionButtonMargin },
-          ]}
-        >
-          <Text style={styles.optionText}>NECESSIDADES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            { marginHorizontal: optionButtonMargin },
-          ]}
-        >
-          <Text style={styles.optionText}>COMIDAS</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -79,6 +47,7 @@ const styles = StyleSheet.create({
     fontFamily: "Mitr_500Medium",
     fontSize: width * 0.02, // Font size based on screen size
     color: "#949494",
+    marginRight: 50,
   },
 });
 

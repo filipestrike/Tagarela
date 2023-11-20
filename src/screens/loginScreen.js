@@ -1,55 +1,64 @@
 import React from "react";
-import { StatusBar, Dimensions, StyleSheet, TextInput, View, Image, Alert, Text } from "react-native";
+import {
+  StatusBar,
+  Dimensions,
+  StyleSheet,
+  TextInput,
+  View,
+  Image,
+  Text,
+} from "react-native";
 import logo from "../common/assets/icons/logoTagarela.png";
 import SubmitButton from "../components/submitButton";
 import CreateButton from "../components/createButton";
 import { useNavigation } from "@react-navigation/native";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../components/fireBaseConfig';
-
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { app } from "../components/fireBaseConfig";
 
 const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.03;
 
 const FormLogin = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [errorMessage, setErrorMessage] = React.useState('');
-
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const auth = getAuth(app);
 
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('Conta criada!');
+        console.log("Conta criada!");
         const user = userCredential.user;
         console.log(user);
-        alert('Conta criada com sucesso!');
+        alert("Conta criada com sucesso!");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-        setErrorMessage('Erro ao criar conta: ' + error.message);
+        setErrorMessage("Erro ao criar conta: " + error.message);
       });
-  }
+  };
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('Login bem-sucedido');
+        console.log("Login bem-sucedido");
         const user = userCredential.user;
         console.log(user);
-        navigation.navigate('Home');
+        navigation.navigate("Home");
       })
-      .catch(error => {
-        console.error('Erro durante o login:', error);
+      .catch((error) => {
+        console.error("Erro durante o login:", error);
         console.log(error);
-        setErrorMessage('CRIE UMA CONTA PARA CONTINUAR');
+        setErrorMessage("CRIE UMA CONTA PARA CONTINUAR");
       });
-  }
-
+  };
 
   return (
     <View style={styles.container}>
@@ -61,7 +70,8 @@ const FormLogin = () => {
           placeholder="E-mail"
           keyboardType="email-address"
           placeholderTextColor="#A7A7A7"
-          color="D3D3D3" />
+          color="D3D3D3"
+        />
       </View>
       <View>
         <TextInput
@@ -72,15 +82,13 @@ const FormLogin = () => {
           placeholderTextColor="#A7A7A7"
         />
       </View>
-
-      <CreateButton
-        onPress={handleCreateAccount}
-      />
-      <SubmitButton
-        onPress={handleSignIn}
-      />
+      <CreateButton onPress={handleCreateAccount} />
+      <SubmitButton onPress={handleSignIn} />
       <StatusBar style="auto" />
-      {errorMessage !== '' && <Text style={styles.errorText}>{errorMessage}</Text>} {/* Exibir mensagem de erro condicionalmente */}
+      {errorMessage !== "" && (
+        <Text style={styles.errorText}>{errorMessage}</Text>
+      )}{" "}
+      {/* Exibir mensagem de erro condicionalmente */}
     </View>
   );
 };
@@ -109,7 +117,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
   },
-
 });
 
 export default FormLogin;
