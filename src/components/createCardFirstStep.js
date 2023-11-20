@@ -11,9 +11,9 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
-import storage from "/src/components/fireBaseConfig.js";
+import storage from "./fireBaseConfig.js";
 import { getFirestore } from "firebase/firestore";
-import iconCheck from "/src/common/assets/icons/icon_check.svg";
+import iconCheck from "../common/assets/icons/icon_check.svg";
 import * as DocumentPicker from "expo-document-picker";
 import { useNavigation } from "@react-navigation/core";
 
@@ -77,18 +77,24 @@ const StepOneCreate = () => {
   };
 
   const handleAudioPicker = async () => {
-    let result = await DocumentPicker.getDocumentAsync({ type: 'audio/mpeg', copyToCacheDirectory: false });
-  
+    let result = await DocumentPicker.getDocumentAsync({
+      type: "audio/mpeg",
+      copyToCacheDirectory: false,
+    });
+
     if (!result.cancelled) {
       const { uri } = result;
-  
+
       try {
         const response = await fetch(uri);
         const blob = await response.blob();
-        
-        const storageRef = ref(storage, "audio/" + new Date().getTime() + ".mp3");
+
+        const storageRef = ref(
+          storage,
+          "audio/" + new Date().getTime() + ".mp3"
+        );
         const uploadTask = uploadBytesResumable(storageRef, blob);
-  
+
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -115,7 +121,7 @@ const StepOneCreate = () => {
     }
   };
 
-    const uploadToFirebase = async () => {
+  const uploadToFirebase = async () => {
     try {
       const responseImage = await fetch(imageUrl);
       const blobImage = await responseImage.blob();
@@ -142,7 +148,7 @@ const StepOneCreate = () => {
       });
 
       // Navega para a próxima tela após o envio
-      navigation.navigate('Categories');
+      navigation.navigate("Categories");
     } catch (error) {
       console.error("Error uploading files or saving to Firebase:", error);
     }
@@ -187,7 +193,7 @@ const StepOneCreate = () => {
         style={styles.confirmData}
         onPress={() => {
           uploadToFirebase();
-          navigation.navigate('Categories');
+          navigation.navigate("Categories");
         }}
       >
         <Text style={styles.textConfirm}>CRIAR CARD</Text>
