@@ -3,26 +3,30 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text,
   TextInput,
+  Text,
   Image,
   Alert,
 } from "react-native";
-import Svg, { Path } from "react-native-svg";
 import * as ImagePicker from "expo-image-picker";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import storage from "./fireBaseConfig";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import iconCheck from "../common/assets/icons/icon_check.svg";
+import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
+import { addDoc, collection } from "firebase/firestore";
+import storage from "/src/components/fireBaseConfig.js";
+import { getFirestore } from "firebase/firestore";
+import iconCheck from "/src/common/assets/icons/icon_check.svg";
+import * as DocumentPicker from "expo-document-picker";
+import { useNavigation } from "@react-navigation/core";
 
 const firestore = getFirestore();
+const collectionRef = collection(firestore, "seu_colecao");
 
 const StepOneCreate = () => {
   const [nodeName, setNodeName] = useState("");
-  const [image, setImage] = useState(null);
-  const [audio, setAudio] = useState(null);
-  const [showImageUpload, setShowImageUpload] = useState(true);
-  //const [showAudioUpload, setShowAudioUpload] = useState(true);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [audioUrl, setAudioUrl] = useState(null);
+  const [showCheckIcon, setShowCheckIcon] = useState(false);
+  const [showCheckIconAudio, setShowCheckIconAudio] = useState(false);
+  const navigation = useNavigation();
 
   const handleImagePicker = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -34,17 +38,16 @@ const StepOneCreate = () => {
     });
 
     if (!result.cancelled) {
-      const imageUri = result.assets[0].uri;
+      const imageUri = result.uri;
       if (imageUri) {
-        // Call the uploadImage function with the valid image URI
         uploadImage(imageUri, "image/jpeg");
+        setShowCheckIcon(true);
       } else {
         console.error("Invalid image URI");
       }
     }
   };
 
-  // Função para escolher uma imagem
   const uploadImage = async (uri, fileType) => {
     const response = await fetch(uri);
     const blob = await response.blob();
@@ -64,7 +67,7 @@ const StepOneCreate = () => {
         getDownloadURL(uploadTask.snapshot.ref)
           .then((downloadURL) => {
             console.log("File available at", downloadURL);
-            setImage(downloadURL);
+            setImageUrl(downloadURL);
           })
           .catch((error) => {
             console.error("Error getting download URL: ", error);
@@ -73,110 +76,144 @@ const StepOneCreate = () => {
     );
   };
 
-  // Função para escolher um arquivo de áudio
-  const uploadAudio = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Audio,
-    });
-
+  const handleAudioPicker = async () => {
+    let result = await DocumentPicker.getDocumentAsync({ type: 'audio/mpeg', copyToCacheDirectory: false });
+  
     if (!result.cancelled) {
-      setAudio(result.uri);
+      const { uri } = result;
+  
+      try {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        
+        const storageRef = ref(storage, "audio/" + new Date().getTime() + ".mp3");
+        const uploadTask = uploadBytesResumable(storageRef, blob);
+  
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Handle upload progress if needed
+          },
+          (error) => {
+            console.error("Error uploading audio: ", error);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref)
+              .then((downloadURL) => {
+                console.log("Audio file available at", downloadURL);
+                setAudioUrl(downloadURL);
+                setShowCheckIconAudio(true);
+              })
+              .catch((error) => {
+                console.error("Error getting audio download URL: ", error);
+              });
+          }
+        );
+      } catch (error) {
+        console.error("Error fetching audio file: ", error);
+      }
     }
   };
 
-  // Função para fazer o upload dos dados para o Firebase
-  const uploadDataToFirebase = async () => {
+    const uploadToFirebase = async () => {
     try {
-      // Upload da imagem para o Firebase Storage
-      const imageRef = storage.ref().child(`images/${nodeName}`);
-      const imageSnapshot = await imageRef.putFile(image);
-      const imageUrl = await imageSnapshot.ref.getDownloadURL();
+      const responseImage = await fetch(imageUrl);
+      const blobImage = await responseImage.blob();
+      const responseAudio = await fetch(audioUrl);
+      const blobAudio = await responseAudio.blob();
 
-      // Upload do áudio para o Firebase Storage
-      const audioRef = storage.ref().child(`audio/${nodeName}`);
-      const audioSnapshot = await audioRef.putFile(audio);
-      const audioUrl = await audioSnapshot.ref.getDownloadURL();
+      const storageRef = ref(storage, "YourCollection/" + new Date().getTime());
+      const imageRef = storageRef.child("image.jpg");
+      const audioRef = storageRef.child("audio.mp3");
 
-      // Salvar os dados no Firestore
-      await addDoc(collection(firestore, "seu_colecao"), {
+      const uploadTaskImage = uploadBytesResumable(imageRef, blobImage);
+      const uploadTaskAudio = uploadBytesResumable(audioRef, blobAudio);
+
+      await Promise.all([uploadTaskImage, uploadTaskAudio]);
+
+      const imageDownloadURL = await getDownloadURL(imageRef);
+      const audioDownloadURL = await getDownloadURL(audioRef);
+
+      // Salvar as URLs em um único nó no Firebase Firestore
+      await addDoc(collectionRef, {
         nodeName,
-        imageUrl,
-        audioUrl,
+        imageUrl: imageDownloadURL,
+        audioUrl: audioDownloadURL,
       });
 
-      Alert.alert("Sucesso", "Dados salvos com sucesso!");
+      // Navega para a próxima tela após o envio
+      navigation.navigate('Categories');
     } catch (error) {
-      console.error("Erro ao salvar os dados:", error);
-      Alert.alert(
-        "Erro",
-        "Ocorreu um erro ao salvar os dados. Tente novamente."
-      );
+      console.error("Error uploading files or saving to Firebase:", error);
     }
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.NameContainer}>
       <TextInput
         style={styles.cardNameInput}
-        placeholder="NOME DO CARD"
+        placeholder="CARD NAME"
         placeholderTextColor="#5E5CB2"
         value={nodeName}
         onChangeText={(text) => setNodeName(text)}
       />
-      {showImageUpload && (
-        <TouchableOpacity
-          style={styles.uploadButton}
-          onPress={() => {
-            handleImagePicker();
-          }}
-        >
-          <Text style={styles.textUpload}>UPLOAD IMAGEM</Text>
-          <Svg
-            width="36"
-            height="33"
-            viewBox="0 0 36 33"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <Path
-              d="M0 0V4.03183H35.7206V0H0ZM17.8603 8.06367L4.46508 20.1592H13.3952V32.2547H22.3254V20.1592H31.2555L17.8603 8.06367Z"
-              fill="#5E5CB2"
-            />
-          </Svg>
-        </TouchableOpacity>
-      )}
-      {image && <View style={styles.iconCheckContainer}>{iconCheck}</View>}
       <TouchableOpacity
-        style={styles.uploadButton}
+        style={styles.buttonConteiner}
         onPress={() => {
-          // Call the function to upload audio
-          uploadAudio();
+          handleImagePicker();
         }}
       >
-        <Text style={styles.textUpload}>UPLOAD ÁUDIO</Text>
+        <Text style={styles.textUpload}>UPLOAD IMAGEM</Text>
+        {showCheckIcon && (
+          <View style={styles.iconCheckContainer}>
+            <Image source={iconCheck} style={styles.checkIcon} />
+          </View>
+        )}
       </TouchableOpacity>
-      {/* Substituído trecho de código pelo ícone check */}
-      {audio && <View style={styles.iconCheckContainer}>{iconCheck}</View>}
       <TouchableOpacity
-        style={styles.uploadButton}
+        style={styles.buttonConteiner}
         onPress={() => {
-          // Call the function to upload all data to Firebase
-          uploadDataToFirebase();
+          handleAudioPicker();
         }}
       >
-        <Text style={styles.textUpload}>SALVAR DADOS</Text>
+        <Text style={styles.textUpload}>UPLOAD AUDIO</Text>
+        {showCheckIconAudio && (
+          <View style={styles.iconCheckContainer}>
+            <Image source={iconCheck} style={styles.checkIcon} />
+          </View>
+        )}
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.confirmData}
+        onPress={() => {
+          uploadToFirebase();
+          navigation.navigate('Categories');
+        }}
+      >
+        <Text style={styles.textConfirm}>CRIAR CARD</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  NameContainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
   },
-  uploadButton: {
+  cardNameInput: {
+    borderWidth: 1,
+    borderRadius: 30,
+    fontFamily: "Mitr_400Regular",
+    padding: 20,
+    fontSize: 16,
+    height: 66,
+    width: "40%",
+    borderColor: "#F4F4F4",
+    backgroundColor: "#F4F4F4",
+  },
+  buttonConteiner: {
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 15,
@@ -191,60 +228,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 10,
   },
-  textAudioOptions: {
-    marginHorizontal: 10,
-    fontFamily: "Mitr_400Regular",
-    color: "#5E5CB2",
-    fontSize: 20,
-  },
-  containerAudioBttn: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  recordBttn: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    marginHorizontal: 10,
-    marginVertical: 5,
-    backgroundColor: "#F4F4F4",
-    height: 50,
-    width: 245,
-    borderRadius: 30,
-  },
-  noAudioBttn: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    marginHorizontal: 10,
-    marginVertical: 5,
-    backgroundColor: "#F4F4F4",
-    height: 50,
-    width: 245,
-    borderRadius: 30,
-  },
-  textAudioBttn: {
-    marginHorizontal: 5,
-    fontFamily: "Mitr_400Regular",
-    fontSize: 20,
-    color: "#5E5CB2",
-  },
-  cardNameInput: {
-    borderWidth: 1,
-    borderRadius: 30,
-    fontFamily: "Mitr_400Regular",
-    padding: 20,
-    fontSize: 16, // Responsive font size
-    height: 66,
-    width: "40%", // Adjust as needed
-    borderColor: "#F4F4F4",
-    backgroundColor: "#F4F4F4",
-  },
-
   iconCheckContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  checkIcon: {
     position: "absolute",
-    top: 10,
-    right: 10,
+    marginTop: 20,
+    width: 40,
+    height: 30,
+  },
+  confirmData: {
+    width: 211,
+    height: 50,
+    border: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 15,
+    borderRadius: 30,
+    backgroundColor: "#5E5CB2",
+  },
+  textConfirm: {
+    fontFamily: "Mitr_400Regular",
+    color: "#FFFFFF",
+    fontSize: 20,
+    marginVertical: 10,
   },
 });
 
