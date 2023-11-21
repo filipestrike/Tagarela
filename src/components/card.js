@@ -22,10 +22,10 @@ import Feliz from "../common/images/Feliz.png";
 import Lavar from "../common/images/Lavar.png";
 import Xixi from "../common/images/Xixi.png";
 import Comer from "../common/images/Comer.png";
-import Coco from "../common/images/Feliz.png";
+import Coco from "../common/images/Coco.png";
 import banana from "../common/images/banana.png";
-import maca from "../common/images/maca.png";
-import bolo1 from "../common/images/Bolo1.png";
+import maca from "../common/images/maca.jpg";
+import bolo1 from "../common/images/bolo.png";
 import agua from "../common/images/agua.png";
 import { Audio } from "expo-av";
 

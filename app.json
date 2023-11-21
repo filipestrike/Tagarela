@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "/src/common/assets/icons/adaptive-icon.png",
+        "foregroundImage": "./src/common/assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.anonymous.tagarela"
