@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../components/fireBaseConfig';
 import { setPersistence, browserLocalPersistence } from 'firebase/auth'; // Importe setPersistence e browserLocalPersistence
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.03;
@@ -30,6 +31,7 @@ const FormLogin = () => {
 
     configurePersistence();
   }, []);
+  
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
