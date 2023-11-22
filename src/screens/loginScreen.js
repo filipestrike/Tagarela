@@ -18,6 +18,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { setPersistence, browserSessionPersistence } from "firebase/auth";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { app } from "../components/fireBaseConfig";
 
 const { width, height } = Dimensions.get("window");
@@ -29,7 +31,11 @@ const FormLogin = () => {
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
 
-  const auth = getAuth(app);
+  const auth = getAuth (app);
+    setPersistence (auth, browserSessionPersistence)
+    .then(() => {
+      return signInWithEmailAndPassword(auth, email, password);
+    })
 
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
