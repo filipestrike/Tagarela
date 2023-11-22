@@ -44,7 +44,7 @@ const FormLogin = () => {
       navigation.navigate("Home");
     } catch (error) {
       console.error("Erro durante o login:", error);
-      setErrorMessage("CRIE UMA CONTA PARA CONTINUAR");
+      setErrorMessage("CRIE UMA CONTA PARA CONTINUAR") ; 
     }
   };
 
