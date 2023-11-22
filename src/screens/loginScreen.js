@@ -32,23 +32,33 @@ const FormLogin = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const auth = getAuth (app);
-    setPersistence (auth, browserSessionPersistence)
-    .then(() => {
-      return signInWithEmailAndPassword(auth, email, password);
-    })
+    
+  const handleAuth = async () => {
+    try {
+      await setPersistence(auth, browserSessionPersistence);
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Login bem-sucedido");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log(user);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("Erro durante o login:", error);
+      setErrorMessage("CRIE UMA CONTA PARA CONTINUAR");
+    }
+  };
 
-  const handleCreateAccount = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Conta criada!");
-        const user = userCredential.user;
-        console.log(user);
-        alert("Conta criada com sucesso!");
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorMessage("Erro ao criar conta: " + error.message);
-      });
+  const handleCreateAccount = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("Conta criada!");
+      const user = userCredential.user;
+      console.log(user);
+      alert("Conta criada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      setErrorMessage("Erro ao criar conta: " + error.message);
+    }
   };
 
   const handleSignIn = () => {
