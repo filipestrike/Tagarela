@@ -31,7 +31,26 @@ const FormLogin = () => {
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
 
+<<<<<<< HEAD
   const auth = getAuth(app);
+=======
+  const auth = getAuth (app);
+    
+  const handleAuth = async () => {
+    try {
+      await setPersistence(auth, browserSessionPersistence);
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Login bem-sucedido");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log(user);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("Erro durante o login:", error);
+      setErrorMessage("CRIE UMA CONTA PARA CONTINUAR") ; 
+    }
+  };
+>>>>>>> b9f01570ff51cd6e2ba93b197a7a4d2715dae757
 
   React.useEffect(() => {
     const initializeFirebaseAuth = async () => {
