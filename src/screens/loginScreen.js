@@ -18,7 +18,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { setPersistence, browserSessionPersistence } from "firebase/auth";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { app } from "../components/fireBaseConfig";
 
@@ -31,34 +31,34 @@ const FormLogin = () => {
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
 
-  const auth = getAuth (app);
-    
-  const handleAuth = async () => {
-    try {
-      await setPersistence(auth, browserSessionPersistence);
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("Login bem-sucedido");
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log(user);
-      navigation.navigate("Home");
-    } catch (error) {
-      console.error("Erro durante o login:", error);
-      setErrorMessage("CRIE UMA CONTA PARA CONTINUAR");
-    }
-  };
+  const auth = getAuth(app);
 
-  const handleCreateAccount = async () => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("Conta criada!");
-      const user = userCredential.user;
-      console.log(user);
-      alert("Conta criada com sucesso!");
-    } catch (error) {
-      console.log(error);
-      setErrorMessage("Erro ao criar conta: " + error.message);
-    }
+  React.useEffect(() => {
+    const initializeFirebaseAuth = async () => {
+      try {
+        await initializeAuth(auth, {
+          persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+        });
+      } catch (error) {
+        console.error("Erro ao inicializar Firebase Auth:", error);
+      }
+    };
+
+    initializeFirebaseAuth();
+  }, [auth]);
+
+  const handleCreateAccount = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("Conta criada!");
+        const user = userCredential.user;
+        console.log(user);
+        alert("Conta criada com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("Erro ao criar conta: " + error.message);
+      });
   };
 
   const handleSignIn = () => {
@@ -103,8 +103,7 @@ const FormLogin = () => {
       <StatusBar style="auto" />
       {errorMessage !== "" && (
         <Text style={styles.errorText}>{errorMessage}</Text>
-      )}{" "}
-      {/* Exibir mensagem de erro condicionalmente */}
+      )}
     </View>
   );
 };
@@ -132,6 +131,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff90",
     padding: 15,
     margin: 10,
+  },
+  errorText: {
+    color: "red",
+    marginTop: 10,
   },
 });
 
