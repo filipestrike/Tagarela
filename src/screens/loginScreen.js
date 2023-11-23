@@ -14,6 +14,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { app } from '../components/fireBaseConfig';
 import { setPersistence, browserLocalPersistence } from 'firebase/auth'; // Importe setPersistence e browserLocalPersistence
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.03;
