@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { StatusBar, Dimensions, StyleSheet, TextInput, View, Text } from "react-native";
+import {
+  StatusBar,
+  Dimensions,
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+} from "react-native";
 import SubmitButton from "../components/submitButton";
 import CreateButton from "../components/createButton";
 import { useNavigation } from "@react-navigation/native";
@@ -13,9 +20,9 @@ const fontSize = Math.min(width, height) * 0.03;
 
 const FormLogin = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const auth = getAuth(app);
 
@@ -23,9 +30,11 @@ const FormLogin = () => {
     async function configurePersistence() {
       try {
         await setPersistence(auth, browserLocalPersistence);
-        console.log('Persistência definida como AsyncStorage para sessão local');
+        console.log(
+          "Persistência definida como AsyncStorage para sessão local"
+        );
       } catch (error) {
-        console.error('Erro ao definir a persistência:', error);
+        console.error("Erro ao definir a persistência:", error);
       }
     }
 
@@ -35,39 +44,40 @@ const FormLogin = () => {
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('Conta criada!');
+        console.log("Conta criada!");
         const user = userCredential.user;
         console.log(user);
-        alert('Conta criada com sucesso!');
+        alert("Conta criada com sucesso!");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-        setErrorMessage('Erro ao criar conta: ' + error.message);
+        setErrorMessage("Erro ao criar conta: " + error.message);
       });
-  }
+  };
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('Login bem-sucedido');
+        console.log("Login bem-sucedido");
         const user = userCredential.user;
         console.log(user);
-        navigation.navigate('Home');
+        navigation.navigate("Home");
       })
-      .catch(error => {
-        console.error('Erro durante o login:', error);
+      .catch((error) => {
+        console.error("Erro durante o login:", error);
         console.log(error);
-        setErrorMessage('CRIE UMA CONTA PARA CONTINUAR');
+        setErrorMessage("CRIE UMA CONTA PARA CONTINUAR");
       });
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <View>
+      <HeaderLoginComponent />
+      <View styles={styles.TopBar}>
         {/* TextInput para o email */}
         <TextInput
           style={styles.input}
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder="E-mail"
           keyboardType="email-address"
@@ -79,7 +89,7 @@ const FormLogin = () => {
         {/* TextInput para a senha */}
         <TextInput
           style={styles.input}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           placeholder="Senha"
           secureTextEntry={true}
@@ -93,7 +103,9 @@ const FormLogin = () => {
       <StatusBar style="auto" />
 
       <View style={styles.errorContainer}>
-        {errorMessage !== '' && <Text style={styles.errorText}>{errorMessage}</Text>}
+        {errorMessage !== "" && (
+          <Text style={styles.errorText}>{errorMessage}</Text>
+        )}
       </View>
     </View>
   );
@@ -107,8 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
-    height: "60%",
-    width: "100%",
+    width: 400,
     borderWidth: 3,
     borderRadius: 20,
     fontFamily: "Mitr_400Regular",
@@ -118,11 +129,9 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
   },
-  errorContainer: {
-    
-  },
+  errorContainer: {},
   errorText: {
-    color: 'red',
+    color: "red",
     fontSize: 16,
   },
 });
