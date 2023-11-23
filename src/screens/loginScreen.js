@@ -16,7 +16,7 @@ import { setPersistence, browserLocalPersistence } from 'firebase/auth'; // Impo
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { YellowBox } from 'react-native';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+YellowBox.ignoreAll();
 
 const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.03;
@@ -43,7 +43,7 @@ const FormLogin = () => {
 
     configurePersistence();
   }, []);
-  
+
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
