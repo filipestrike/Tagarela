@@ -1,513 +1,128 @@
-import { TouchableOpacity, View, Text, ScrollView } from "react-native";
-import { styles, cardWidth, cardHeight, cardMargin } from "./card";
+import React from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+  View,
+  Text,
+  Image,
+} from "react-native";
+import { Audio } from "expo-av";
+import Abrir from "../common/images/Abrir.png";
+const AbrirA = require("../common/audio/Abrir.mp3");
 
-export const CardModel = ({ selectedCategory }) => {
-  const renderCard = () => {
-    switch (selectedCategory) {
-      case "DIA A DIA":
-        return (
-          <>
-            <ScrollView horizontal>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed1!");
-                  }}
-                >
-                  <Image
-                    source={card.image}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 1
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed2!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 2
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed3!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 3
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed4!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 4
-                </Text>
-              </View>
-            </ScrollView>
-          </>
-        );
-      case "AÇÕES":
-        return (
-          <>
-            <ScrollView horizontal>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed1!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 1
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed2!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 2
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed3!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 3
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed4!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 4
-                </Text>
-              </View>
-            </ScrollView>
-          </>
-        );
-      case "EMOÇÕES":
-        return (
-          <>
-            <ScrollView horizontal>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed1!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 1
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed2!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 2
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed3!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 3
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed4!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 4
-                </Text>
-              </View>
-            </ScrollView>
-          </>
-        );
-      case "NECESSIDADES":
-        return (
-          <>
-            <ScrollView horizontal>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed1!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 1
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed2!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 2
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed3!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 3
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed4!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 4
-                </Text>
-              </View>
-            </ScrollView>
-          </>
-        );
-      case "COMIDAS":
-        return (
-          <>
-            <ScrollView horizontal>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed1!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 1
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed2!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 2
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed3!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 3
-                </Text>
-              </View>
-              <View style={styles.cardContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]}
-                  onPress={() => {
-                    // Aqui vai a logica para executar o sonido da card
-                    alert("Card Pressed4!");
-                  }}
-                >
-                  {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-                </TouchableOpacity>
-                <Text style={styles.cardText}>
-                  {/* aqui vai a logica para trazer o text descrição da imagen */}
-                  CARD TEXT 4
-                </Text>
-              </View>
-            </ScrollView>
-          </>
-        );
-      default:
-        return (
-          <>
-            <TouchableOpacity
-              style={[
-                styles.cardButton,
-                {
-                  width: cardWidth,
-                  height: cardHeight,
-                  marginVertical: cardMargin,
-                },
-              ]}
-              onPress={() => {
-                // Aqui vai a logica para executar o sonido da card
-                alert("Card Pressed1!");
-              }}
-            >
-              {/* Aqui vai a logica para trazer a imagen do banco de dados */}
-            </TouchableOpacity>
-            <Text style={styles.cardText}>
-              {/* aqui vai a logica para trazer o text descrição da imagen */}
-              CARD TEXT 1
-            </Text>
-          </>
-        );
-    }
-  };
-  return <View>{renderCard()}</View>;
+const { width, height } = Dimensions.get("window");
+const cardWidth = width * 0.2; // Card width based on screen size
+const cardHeight = height * 0.35; // Card height based on screen size
+const cardMargin = width * 0.005; // Card margin based on screen size
+
+async function playSound(audio) {
+  const sound = new Audio.Sound();
+  try {
+    await sound.loadAsync(audio),
+      {
+        shouldPlay: true,
+      };
+    await sound.setPositionAsync(0);
+    await sound.playAsync();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const CardModelFav = ({ imageUrl, cardText, onPress }) => {
+  return (
+    <>
+      <TouchableOpacity
+        style={[
+          styles.cardButtonFav,
+          {
+            width: cardWidth,
+            height: cardHeight,
+            marginVertical: cardMargin,
+          },
+        ]}
+        onPress={() => playSound(AbrirA)}
+      >
+        <Image source={Abrir} style={[styles.cardFirebase]} />
+      </TouchableOpacity>
+      <Text style={styles.cardTextFav}>CARD TEXT 1</Text>
+    </>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  scrollViewContent: {
+    alignItems: "center",
+  },
+  cardContainer: {
+    marginLeft: 40,
+    margin: 12,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cardButton: {
+    backgroundColor: "#F4F4F4",
+    borderRadius: 30,
+    marginTop: 20,
+  },
+  cardButtonFav: {
+    backgroundColor: "#F4F4F4",
+    borderRadius: 30,
+    marginTop: 20,
+    marginLeft: 500,
+  },
+  cardTextFav: {
+    marginTop: 5,
+    fontFamily: "Mitr_500Medium",
+    fontSize: width * 0.02,
+    color: "#000000",
+    marginLeft: 550,
+  },
+  cardText: {
+    marginTop: 5,
+    fontFamily: "Mitr_500Medium",
+    fontSize: width * 0.02,
+    color: "#000000",
+  },
+  cardImage: {
+    width: "90%",
+    height: "100%",
+    borderRadius: 15,
+    marginTop: 15,
+    marginLeft: 12.5,
+  },
+  cardImageAqui: {
+    width: "90%",
+    height: "100%",
+    borderRadius: 15,
+    marginLeft: 35,
+  },
+  cardImageFull: {
+    width: "90%",
+    height: "100%",
+    borderRadius: 10,
+    marginLeft: 15,
+  },
+  cardImageComida: {
+    width: "85%",
+    height: "100%",
+    borderRadius: 10,
+    marginLeft: 15,
+  },
+  cardFirebase: {
+    width: "85%",
+    height: "100%",
+    borderRadius: 10,
+    marginLeft: 15,
+  },
+});
+
+export default CardModelFav;

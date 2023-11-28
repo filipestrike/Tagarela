@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import HeaderComponent from "../components/header";
 import CardsCategoriesEdit from "../components/cardsBarEdit";
 import OptionsMenu from "../components/optionsBar";
-import CardModel from "../components/card";
+import CardModelFav from "../components/CardModel";
 
 const Categories = () => {
   return (
@@ -13,7 +13,7 @@ const Categories = () => {
       <View style={styles.containerBars}>
         <CardsCategoriesEdit />
       </View>
-      <CardModel />
+      <CardModelFav />
       <View style={styles.containerBars}>
         <OptionsMenu
           homeColor="#949494"

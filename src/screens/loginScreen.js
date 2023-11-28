@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import SubmitButton from "../components/submitButton";
 import CreateButton from "../components/createButton";
 import { useNavigation } from "@react-navigation/native";

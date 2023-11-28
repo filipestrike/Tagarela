@@ -46,7 +46,7 @@ const HeaderComponent = () => {
 
 const styles = StyleSheet.create({
   containerHeader: {
-    marginTop: -20,
+    marginTop: -100,
     paddingBottom: 200,
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
