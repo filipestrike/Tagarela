@@ -7,6 +7,7 @@ const { width, height } = Dimensions.get("window");
 const cardWidth = width * 0.2; // Card width based on screen size
 const cardHeight = height * 0.35; // Card height based on screen size
 const cardMargin = width * 0.005; // Card margin based on screen size
+const screenWidth = width;
 
 const Categories = () => {
   const [cardName, setCardName] = useState("");
@@ -91,11 +92,14 @@ const styles = StyleSheet.create({
   containerFather: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
   },
   containerBars: {
     width: "100%",
     justifyContent: "center",
     marginVertical: 30,
+    alignItems: "center",
   },
   cardButton: {
     backgroundColor: "#F4F4F4",
@@ -103,23 +107,30 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 330,
     height: 250,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardText: {
     marginTop: 5,
     fontFamily: "Mitr_500Medium",
     fontSize: width * 0.02,
     color: "#000000",
+    justifyContent: "center",
+    alignItems: "center",
   },
   dataContainer: {
-    marginLeft: 538,
+    width: screenWidth,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     marginTop: 20,
+    justifyContent: "center",
   },
   cardName: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 200,
@@ -127,11 +138,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     position: "absolute",
     resizeMode: "center",
-  },
-  audioText: {
-    fontSize: 18,
-    color: "blue",
-    textDecorationLine: "underline",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
