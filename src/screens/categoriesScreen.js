@@ -101,6 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F4F4F4",
     borderRadius: 30,
     marginTop: 20,
+    width: 330,
+    height: 250,
   },
   cardText: {
     marginTop: 5,
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   dataContainer: {
-    marginLeft: 20,
+    marginLeft: 538,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     marginTop: 20,
@@ -122,8 +124,9 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
-    resizeMode: "cover",
-    marginBottom: 10,
+    borderRadius: 30,
+    position: "absolute",
+    resizeMode: "center",
   },
   audioText: {
     fontSize: 18,
@@ -132,4 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Categories;
+export default Categories

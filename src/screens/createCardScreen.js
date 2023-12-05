@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 30,
     width: 225,
-    height: 134,
+    height: 169,
     backgroundColor: "#F4F4F4",
   },
   audioBttn: {
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderRadius: 30,
     width: 225,
-    height: 134,
+    height: 169,
     backgroundColor: "#F4F4F4",
   },
   textUpload: {
