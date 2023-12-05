@@ -58,7 +58,7 @@ export default function App() {
           initialRouteName="Home"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={FormLogin} />
+          <Stack.Screen name="FormLogin" component={FormLogin} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Categories" component={Categories} />
           <Stack.Screen name="CreateCard" component={CreateCard} />

@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HeaderComponent from "../components/header";
-import CardsCategoriesEdit from "../components/cardsBarEdit";
+import CardsCategories from "../components/cardsBar";
+import OptionsMenu from "../components/optionsBar";
 
+const { width, height } = Dimensions.get("window");
+const cardWidth = width * 0.2; // Card width based on screen size
+const cardHeight = height * 0.35; // Card height based on screen size
+const cardMargin = width * 0.005; // Card margin based on screen size
 
 import { Audio } from "expo-av";
 
@@ -53,31 +58,49 @@ const Categories = () => {
 
   return (
     <View style={styles.containerFather}>
-    <HeaderComponent />
-    <View style={styles.containerBars}>
-      <CardsCategoriesEdit />
-      </View>
       <View style={styles.dataContainer}>
-        <Text style={styles.cardName}>{cardName}</Text>
-        {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
         {audioUrl && (
-          <TouchableOpacity onPress={playAudio}>
-            <Text style={styles.audioText}>Play Audio</Text>
+          <TouchableOpacity style={[
+                    styles.cardButton,
+                    {
+                      width: cardWidth,
+                      height: cardHeight,
+                      marginVertical: cardMargin,
+                    },
+                  ]} onPress={playAudio}>
+            {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
           </TouchableOpacity>
         )}
+        <Text style={styles.cardText}>{cardName}</Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerFather: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    alignItems: "center",
+  },
+  containerBars: {
+    width: "100%",
     justifyContent: "center",
+    marginVertical: 30,
+  },
+  cardButton: {
+    backgroundColor: "#F4F4F4",
+    borderRadius: 30,
+    marginTop: 20,
+  },
+  cardText: {
+    marginTop: 5,
+    fontFamily: "Mitr_500Medium",
+    fontSize: width * 0.02,
+    color: "#000000",
   },
   dataContainer: {
+    marginLeft: 20,
+    backgroundColor: "#FFFFFF",
     alignItems: "center",
     marginTop: 20,
   },

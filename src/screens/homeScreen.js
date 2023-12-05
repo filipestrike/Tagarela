@@ -25,10 +25,7 @@ const Home = () => {
       <View style={styles.containerBars}>
         <OptionsMenu
           homeColor="#5E5CB2"
-          favColor="#949494"
           addColor="#949494"
-          categoriesColor="#949494"
-          userColor="#949494"
         />
       </View>
       <StatusBar />

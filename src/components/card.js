@@ -27,6 +27,8 @@ import banana from "../common/images/banana.png";
 import maca from "../common/images/maca.jpg";
 import bolo1 from "../common/images/bolo.png";
 import agua from "../common/images/agua.png";
+
+import Categories from "../screens/categoriesScreen";
 import { Audio } from "expo-av";
 
 const { width, height } = Dimensions.get("window");
@@ -298,7 +300,7 @@ const CardModel = ({ selectedCategory }) => {
                 >
                   <Image source={Lavar} style={[styles.cardImageFull]} />
                 </TouchableOpacity>
-                <Text style={styles.cardText}>LAVAR AS MÂOS</Text>
+                <Text style={styles.cardText}>LAVAR AS MÃOS</Text>
               </View>
               <View style={styles.cardContainer}>
                 <TouchableOpacity
@@ -434,6 +436,14 @@ const CardModel = ({ selectedCategory }) => {
             </ScrollView>
           </>
         );
+        case "PERSONALIZADAS":
+          return (
+            <>
+              <ScrollView horizontal>
+                <Categories />
+              </ScrollView>
+            </>
+          );
       default:
         return (
           <>
@@ -506,7 +516,6 @@ const styles = StyleSheet.create({
     width: "90%",
     height: "100%",
     borderRadius: 15,
-    marginTop: 15,
     marginLeft: 12.5,
   },
   cardImageAqui: {

@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
   Text,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SubmitButton from "../components/submitButton";
@@ -16,9 +17,10 @@ import { app } from '../components/fireBaseConfig';
 import { setPersistence, browserLocalPersistence } from 'firebase/auth'; // Importe setPersistence e browserLocalPersistence
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const { width, height } = Dimensions.get("window");
 const fontSize = Math.min(width, height) * 0.03;
+import logo2 from "../common/assets/icons/logoTagarela.png";
+import logo from "../common/assets/icons/logoTagarela_3.png";
 
 const FormLogin = () => {
   const navigation = useNavigation();
@@ -74,8 +76,10 @@ const FormLogin = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderLoginComponent />
-      <View styles={styles.TopBar}>
+      <View>
+        <Image source={logo2} style={[styles.imgLogo]} />
+      </View>
+      <View >        
         {/* TextInput para o email */}
         <TextInput
           style={styles.input}
@@ -87,6 +91,7 @@ const FormLogin = () => {
           color="D3D3D3"
         />
       </View>
+
       <View>
         {/* TextInput para a senha */}
         <TextInput
@@ -119,6 +124,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
+  },
+  imgLogo :{
+    margin: 5,
+    width: 300,
+    height: 200,
   },
   input: {
     width: 400,

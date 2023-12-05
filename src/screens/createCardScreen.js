@@ -12,6 +12,9 @@ import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import iconCheck from "../common/assets/icons/icon_check.svg";
+import OptionsMenu from "../components/optionsBar";
+import HeaderComponent from "../components/header";
+import Home from "./homeScreen";
 import { useNavigation } from "@react-navigation/core";
 
 const StepOneCreate = () => {
@@ -72,7 +75,7 @@ const StepOneCreate = () => {
       await AsyncStorage.setItem("cardName", nodeName);
       // Adicione outras informações do card que deseja salvar localmente
 
-      navigation.navigate("Categories");
+      navigation.navigate("Home");
     } catch (error) {
       console.error("Error saving card locally:", error);
     }
@@ -80,6 +83,7 @@ const StepOneCreate = () => {
 
   return (
     <View style={styles.NameContainer}>
+      <HeaderComponent />
       <TextInput
         style={styles.cardNameInput}
         placeholder="CARD NAME"
@@ -99,7 +103,7 @@ const StepOneCreate = () => {
         )}
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.buttonContainer}
+        style={styles.audioBttn}
         onPress={handleAudioPicker}
       >
         <Text style={styles.textUpload}>UPLOAD AUDIO</Text>
@@ -112,6 +116,12 @@ const StepOneCreate = () => {
       <TouchableOpacity style={styles.confirmData} onPress={saveCardLocally}>
         <Text style={styles.textConfirm}>CREATE CARD</Text>
       </TouchableOpacity>
+      <View style={styles.containerBars}>
+        <OptionsMenu
+          homeColor="#949494"
+          addColor="#5E5CB2"
+        />
+      </View>
     </View>
   );
 };
@@ -133,33 +143,42 @@ const styles = StyleSheet.create({
     borderColor: "#F4F4F4",
     backgroundColor: "#F4F4F4",
   },
-  buttonConteiner: {
+  buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 15,
     borderRadius: 30,
     width: 225,
-    height: 191,
+    height: 134,
+    backgroundColor: "#F4F4F4",
+  },
+  audioBttn: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+    borderRadius: 30,
+    width: 225,
+    height: 134,
     backgroundColor: "#F4F4F4",
   },
   textUpload: {
     fontFamily: "Mitr_400Regular",
     color: "#5E5CB2",
     fontSize: 20,
-    marginVertical: 10,
+    // marginVertical: 10,
   },
   iconCheckContainer: {
     justifyContent: "center",
     alignItems: "center",
   },
   checkIcon: {
-    position: "absolute",
+    position: "relative",
     marginTop: 20,
     width: 40,
     height: 30,
   },
   confirmData: {
-    width: 211,
+    width: 250,
     height: 50,
     border: 30,
     justifyContent: "center",
@@ -173,6 +192,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     marginVertical: 10,
+  },
+  containerBars: {
+    width: "100%",
+    justifyContent: "center",
+    marginVertical: 30,
   },
 });
 

@@ -58,6 +58,15 @@ const CardsCategories = ({ selectedCategory, onCategoryChange }) => {
         >
           <Text style={styles.optionText}>COMIDAS</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onCategoryChange("PERSONALIZADAS")}
+          style={[
+            styles.optionButton,
+            { marginHorizontal: optionButtonMargin },
+          ]}
+        >
+          <Text style={styles.optionText}>PERSONALIZADAS</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   container: {
-    width: width * 0.8, // Width based on screen size
+    width: width * 0.97, // Width based on screen size
     height: height * 0.1, // Height based on screen size
     backgroundColor: "#F4F4F4",
     borderRadius: 30,

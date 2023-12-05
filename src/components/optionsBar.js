@@ -7,10 +7,7 @@ const optionButtonMargin = width * 0.02; // Margin based on screen size
 
 const OptionsMenu = ({
   homeColor,
-  favColor,
   addColor,
-  categoriesColor,
-  userColor,
 }) => {
   const navigation = useNavigation();
   return (
@@ -54,25 +51,6 @@ const OptionsMenu = ({
             <Path d="M18.3418 0V20.2168H0V33.6946H18.3418V53.9114H30.5696V33.6946H48.9114V20.2168H30.5696V0H18.3418Z" />
           </Svg>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButtonStar,
-            { marginHorizontal: optionButtonMargin },
-          ]}
-          onPress={() => {
-            navigation.navigate("Categories");
-          }}
-        >
-          <Svg
-            width={70}
-            height={60}
-            viewBox="0 0 70 60"
-            fill={favColor}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <Path d="M34.7451 0L26.0588 22.3088H0L21.7157 37.1814L13.0294 59.4902L34.7451 44.6176L56.4608 59.4902L47.7745 37.1814L69.4902 22.3088H43.4314L34.7451 0Z" />
-          </Svg>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -85,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   container: {
-    width: width * 0.5, // Width based on screen size
+    width: width * 0.25, // Width based on screen size
     height: height * 0.14, // Height based on screen size
     backgroundColor: "#F4F4F4",
     borderRadius: 30,
@@ -102,9 +80,6 @@ const styles = StyleSheet.create({
   },
   optionButtonAdd: {
     marginVertical: height * 0.035, // Margin based on screen size
-  },
-  optionButtonCategories: {
-    marginVertical: height * 0.03, // Margin based on screen size
   },
 });
 
