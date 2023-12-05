@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import HeaderComponent from "../components/header";
-import CardsCategories from "../components/cardsBar";
-import OptionsMenu from "../components/optionsBar";
+import { Audio } from "expo-av";
 
 const { width, height } = Dimensions.get("window");
 const cardWidth = width * 0.2; // Card width based on screen size
 const cardHeight = height * 0.35; // Card height based on screen size
 const cardMargin = width * 0.005; // Card margin based on screen size
 
-import { Audio } from "expo-av";
-
 const Categories = () => {
   const [cardName, setCardName] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
+  const [sound, setSound] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -44,30 +41,43 @@ const Categories = () => {
   }, []);
 
   const playAudio = async () => {
+    console.log("Trying to play audio");
     if (audioUrl) {
-      const soundObject = new Audio.Sound();
-
+      const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
+      setSound(sound);
+  
       try {
-        await soundObject.loadAsync({ uri: audioUrl });
-        await soundObject.playAsync();
+        console.log("Playing audio");
+        await sound.playAsync();
       } catch (error) {
         console.error("Error playing audio:", error);
       }
     }
-  };
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   return (
     <View style={styles.containerFather}>
       <View style={styles.dataContainer}>
         {audioUrl && (
-          <TouchableOpacity style={[
-                    styles.cardButton,
-                    {
-                      width: cardWidth,
-                      height: cardHeight,
-                      marginVertical: cardMargin,
-                    },
-                  ]} onPress={playAudio}>
+          <TouchableOpacity
+            style={[
+              styles.cardButton,
+              {
+                width: cardWidth,
+                height: cardHeight,
+                marginVertical: cardMargin,
+              },
+            ]}
+            onPress={playAudio}
+          >
             {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
           </TouchableOpacity>
         )}

@@ -59,13 +59,13 @@ const CardsCategories = ({ selectedCategory, onCategoryChange }) => {
           <Text style={styles.optionText}>COMIDAS</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => onCategoryChange("PERSONALIZADAS")}
+          onPress={() => onCategoryChange("MEUS CARDS")}
           style={[
             styles.optionButton,
             { marginHorizontal: optionButtonMargin },
           ]}
         >
-          <Text style={styles.optionText}>PERSONALIZADAS</Text>
+          <Text style={styles.optionText}>MEUS CARDS</Text>
         </TouchableOpacity>
       </View>
     </View>

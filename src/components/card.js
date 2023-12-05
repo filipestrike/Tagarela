@@ -436,7 +436,7 @@ const CardModel = ({ selectedCategory }) => {
             </ScrollView>
           </>
         );
-        case "PERSONALIZADAS":
+        case "MEUS CARDS":
           return (
             <>
               <ScrollView horizontal>

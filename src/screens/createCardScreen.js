@@ -10,12 +10,14 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from 'expo-file-system';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import iconCheck from "../common/assets/icons/icon_check.svg";
 import OptionsMenu from "../components/optionsBar";
 import HeaderComponent from "../components/header";
 import Home from "./homeScreen";
 import { useNavigation } from "@react-navigation/core";
+import { Asset } from 'expo-asset';
 
 const StepOneCreate = () => {
   const [nodeName, setNodeName] = useState("");
@@ -34,50 +36,102 @@ const StepOneCreate = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      const imageUri = result.uri;
-      if (imageUri) {
-        try {
-          await AsyncStorage.setItem("savedImage", imageUri);
-          setImageUrl(imageUri);
-          setShowCheckIcon(true);
-        } catch (error) {
-          console.error("Error saving image locally:", error);
+    if (!result.canceled) {
+      const imageAssets = result.assets;
+
+      if (imageAssets && imageAssets.length > 0) {
+        const imageUri = imageAssets[0].uri;
+        if (imageUri) {
+          try {
+            await AsyncStorage.setItem("savedImage", imageUri);
+            setImageUrl(imageUri);
+            setShowCheckIcon(true);
+          } catch (error) {
+            console.error("Error saving image locally:", error);
+          }
+        } else {
+          console.error("Invalid image URI");
         }
       } else {
-        console.error("Invalid image URI");
+        console.error("No image selected");
       }
     }
+  };
+
+  const getContentUriPath = (contentUri) => {
+    const uriParts = contentUri.split('/');
+    if (uriParts.length > 0) {
+      uriParts.splice(0, 3, 'content:'); // Replace 'content' with 'content:'
+      return uriParts.join('/');
+    }
+    return contentUri;
+  };
+
+  const getContentUriFileName = (contentUri) => {
+    const uriParts = contentUri.split('/');
+    return uriParts[uriParts.length - 1];
   };
 
   const handleAudioPicker = async () => {
-    let result = await DocumentPicker.getDocumentAsync({
-      type: "audio/mpeg",
-      copyToCacheDirectory: false,
-    });
-
-    if (!result.cancelled) {
-      const { uri } = result;
-
-      try {
-        await AsyncStorage.setItem("savedAudio", uri);
-        setAudioUrl(uri);
-        setShowCheckIconAudio(true);
-      } catch (error) {
-        console.error("Error saving audio locally:", error);
+    try {
+      let result = await DocumentPicker.getDocumentAsync({
+        type: 'audio/*',
+        copyToCacheDirectory: false,
+      });
+  
+      console.log("Resultado da seleção de áudio:", result);
+  
+      if (!result.cancelled) {
+        const { uri } = result.assets[0];
+  
+        if (uri) {
+          try {
+            const filename = result.assets[0].name;
+            const fileUri = `${FileSystem.documentDirectory}${filename}`;
+  
+            await FileSystem.copyAsync({
+              from: uri,
+              to: fileUri,
+            });
+  
+            await AsyncStorage.setItem("savedAudio", fileUri);
+            setAudioUrl(fileUri);
+            setShowCheckIconAudio(true);
+          } catch (error) {
+            console.error("Erro ao copiar o áudio:", error);
+          }
+        } else {
+          console.error("URI do áudio inválida");
+        }
+      } else {
+        console.log("A seleção foi cancelada.");
       }
+    } catch (error) {
+      console.error("Erro ao selecionar o áudio:", error);
     }
   };
+  
+  
 
   const saveCardLocally = async () => {
     try {
       // Salvar os dados localmente (nome, imagem, áudio)
       await AsyncStorage.setItem("cardName", nodeName);
-      // Adicione outras informações do card que deseja salvar localmente
-
+      console.log("SAVED NAME");
+  
+      // Salvar imageUrl e audioUrl, se necessário
+      if (imageUrl) {
+        await AsyncStorage.setItem("savedImage", imageUrl);
+        console.log("SAVED IMAGE");
+      }
+      if (audioUrl) {
+        await AsyncStorage.setItem("savedAudio", audioUrl);
+        console.log("SAVED AUDIO");
+      }
+  
       navigation.navigate("Home");
     } catch (error) {
-      console.error("Error saving card locally:", error);
+      console.error("Erro ao salvar o card localmente:", error);
     }
   };
 
@@ -86,7 +140,7 @@ const StepOneCreate = () => {
       <HeaderComponent />
       <TextInput
         style={styles.cardNameInput}
-        placeholder="CARD NAME"
+        placeholder="NOME DO CARD"
         placeholderTextColor="#5E5CB2"
         value={nodeName}
         onChangeText={(text) => setNodeName(text)}
@@ -95,17 +149,14 @@ const StepOneCreate = () => {
         style={styles.buttonContainer}
         onPress={handleImagePicker}
       >
-        <Text style={styles.textUpload}>UPLOAD IMAGE</Text>
+        <Text style={styles.textUpload}>UPLOAD IMAGEM</Text>
         {showCheckIcon && (
           <View style={styles.iconCheckContainer}>
             <Image source={iconCheck} style={styles.checkIcon} />
           </View>
         )}
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.audioBttn}
-        onPress={handleAudioPicker}
-      >
+      <TouchableOpacity style={styles.audioBttn} onPress={handleAudioPicker}>
         <Text style={styles.textUpload}>UPLOAD AUDIO</Text>
         {showCheckIconAudio && (
           <View style={styles.iconCheckContainer}>
@@ -114,13 +165,10 @@ const StepOneCreate = () => {
         )}
       </TouchableOpacity>
       <TouchableOpacity style={styles.confirmData} onPress={saveCardLocally}>
-        <Text style={styles.textConfirm}>CREATE CARD</Text>
+        <Text style={styles.textConfirm}>CRIAR CARD</Text>
       </TouchableOpacity>
       <View style={styles.containerBars}>
-        <OptionsMenu
-          homeColor="#949494"
-          addColor="#5E5CB2"
-        />
+        <OptionsMenu homeColor="#949494" addColor="#5E5CB2" />
       </View>
     </View>
   );
