@@ -152,7 +152,7 @@ const StepOneCreate = () => {
         <Text style={styles.textUpload}>UPLOAD IMAGEM</Text>
         {showCheckIcon && (
           <View style={styles.iconCheckContainer}>
-            <Image source={iconCheck} style={styles.checkIcon} />
+            <Text style={styles.textUpload}>REALIZADO</Text>
           </View>
         )}
       </TouchableOpacity>
@@ -160,7 +160,7 @@ const StepOneCreate = () => {
         <Text style={styles.textUpload}>UPLOAD AUDIO</Text>
         {showCheckIconAudio && (
           <View style={styles.iconCheckContainer}>
-            <Image source={iconCheck} style={styles.checkIcon} />
+            <Text style={styles.textUpload}>REALIZADO</Text>
           </View>
         )}
       </TouchableOpacity>
